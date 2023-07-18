@@ -21,33 +21,51 @@ if A_Is64bitOS && A_PtrSize != 8
 ; Some editors however save without BOM, and then special characters look messed up in the AHK GUI.
 
 ; Write your own AHK commands in this file to be recognized by the GUI. Take inspiration from the samples provided here.
-
+eChar := % A_Space
+nChar := "/"
 ;-------------------------------------------------------------------------------
 ;;; SEARCH GOOGLE ;;;
 ;-------------------------------------------------------------------------------
-if BSIO = g%A_Space% ; Search Google 
+if BSIO = %nChar%googleletme%eChar% ; Search Google 
 {
     gui_search_title = LMGTFY
     gui_search("https://www.google.com/search?num=50&safe=off&site=&source=hp&q=REPLACEME&btnG=Search&oq=&gs_l=")
 }
-else if BSIO = a%A_Space% ; Search Google for AutoHotkey related stuff
+else if BSIO = %nChar%snage ; Search Google for AutoHotkey related stuff
+{
+    snagitEditor := "C:\Program Files\TechSmith\Snagit 2021\SnagitEditor.exe" ; SnagIt Editor
+    run % snagiteditor
+    Gui_Destroy()
+}
+else if BSIO = %nChar%help ; Search Google for AutoHotkey related stuff
+{
+    Edit UserCommands.ahk
+    WinActivate, UserCommands.ahk
+    Gui_Destroy()
+}
+else if BSIO = %nChar%lib ; Search Google for AutoHotkey related stuff
+{
+    Run, C:\Users\bacona\OneDrive - FM Global\3. AHK\AHK-Projects\lib
+    Gui_Destroy()
+}
+else if BSIO = %nChar%ahk ; Search Google for AutoHotkey related stuff
 {
     gui_search_title = Autohotkey Google Search
     gui_search("https://www.google.com/search?num=50&safe=off&site=&source=hp&q=autohotkey%20REPLACEME&btnG=Search&oq=&gs_l=")
 }
-else if BSIO = l%A_Space% ; Search Google with ImFeelingLucky
+else if BSIO = gluck%eChar% ; Search Google with ImFeelingLucky
 {
     gui_search_title = I'm Feeling Lucky
     gui_search("http://www.google.com/search?q=REPLACEME&btnI=Im+Feeling+Lucky")
 }
-else if BSIO = m%A_Space% ; Open more than one URL
+else if BSIO = %nChar%msearch%eChar% ; Open more than one URL
 {
     gui_search_title = multiple
     gui_search("https://www.google.com/search?&q=REPLACEME")
     gui_search("https://www.bing.com/search?q=REPLACEME")
     gui_search("https://duckduckgo.com/?q=REPLACEME")
 }
-else if BSIO = x%A_Space% ; Search Google as Incognito
+else if BSIO = %nChar%xgoo%eChar% ; Search Google as Incognito
 ;   A note on how this works:
 ;   The function name "gui_search()" is poorly chosen.
 ;   What you actually specify as the parameter value is a command to run. It does not have to be a URL.
@@ -63,62 +81,57 @@ else if BSIO = x%A_Space% ; Search Google as Incognito
 ;-------------------------------------------------------------------------------
 ;;; SEARCH OTHER THINGS ;;;
 ;-------------------------------------------------------------------------------
-else if BSIO = f%A_Space% ; Search Facebook
-{
-    gui_search_title = Search Facebook
-    gui_search("https://www.facebook.com/search/results.php?q=REPLACEME")
-}
-else if BSIO = y%A_Space% ; Search Youtube
+else if BSIO = %nChar%yt%eChar% ; Search Youtube
 {
     gui_search_title = Search Youtube
     gui_search("https://www.youtube.com/results?search_query=REPLACEME")
 }
 
-else if BSIO = the%A_Space% ; Thesaurus
+else if BSIO = %nChar%thes ; Thesaurus
 {
     gui_search_title = Thesaurus
     gui_search("https://www.thesaurus.com/browse/REPLACEME")
 }
 
-else if BSIO = ncontrol%A_Space% ; NIST 800-53 R5 Control Search
+else if BSIO = ncontrol%eChar% ; NIST 800-53 R5 Control Search
 {
-    gui_search_title = NIST 800-53 R5 Control Search - CASE SENSITIVE!
+    gui_search_title = Cybersecurity and Privacy Reference Tool`nNIST 800-53 R5 Control Search - CASE SENSITIVE!
     gui_search("https://csrc.nist.gov/projects/cprt/catalog#/cprt/framework/version/SP_800_53_5_1_0/home?element=REPLACEME")
 }
 
-else if BSIO = nkey%A_Space% ; NIST 800-53 R5 Control Keyword Search
+else if BSIO = nkey%eChar% ; NIST 800-53 R5 Control Keyword Search
 {
-    gui_search_title = NIST 800-53 R5 Control Keyword Search
+    gui_search_title = Cybersecurity and Privacy Reference Tool`nNIST 800-53 R5 Control Keyword Search
     gui_search("https://csrc.nist.gov/projects/cprt/catalog#/cprt/framework/version/SP_800_53_5_1_0/home?keyword=REPLACEME")
 }
 
 
-else if BSIO = cart%A_Space% ; Search CMS Technical Reference Architecture
+else if BSIO = cart%eChar% ; Search CMS Technical Reference Architecture
 {
-    gui_search_title = Search CMS Ref Architecture
+    gui_search_title = Cybersecurity and Privacy Reference Tool`nSearch CMS Ref Architecture
     gui_search("https://www.cms.gov/tra/Content/Search.htm?q=REPLACEME")
 }
 
-else if BSIO = ndef%A_Space% ; NIST Definition
+else if BSIO = ndef%eChar% ; NIST Definition
 {
-    gui_search_title = NIST Definition
+    gui_search_title = Cybersecurity and Privacy Reference Tool`nNIST Definition
     gui_search("https://csrc.nist.gov/glossary?keywords-lg=REPLACEME")
 }
 
-else if BSIO = cmvp%A_Space% ; CMVP Search
+else if BSIO = cmvp%eChar% ; CMVP Search
 {
-    gui_search_title = Search CMVP
+    gui_search_title = Cybersecurity and Privacy Reference Tool`nSearch CMVP
     gui_search("https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules/search?SearchMode=Basic&ModuleName=REPLACEME&CertificateStatus=Active&ValidationYear=0")
 }
 
 
-else if BSIO = frmarket%A_Space% ; Search FR Marketplace # need to be updated to support FR new website
+else if BSIO = frmarket%eChar% ; Search FR Marketplace # need to be updated to support FR new website
 {
     gui_search_title = Search FedRAMP Marketplace
     gui_search("https://marketplace.fedramp.gov/#!/products?sort=productName&productNameSearch=REPLACEME")
 }
 
-else if BSIO = t%A_Space% ; Search torrent networks
+else if BSIO = t%eChar% ; Search torrent networks
 {
     gui_search_title = Sharing is caring
     gui_search("https://kickass.to/usearch/REPLACEME")
@@ -129,7 +142,7 @@ else if BSIO = jp ; Translate English to Japanese
     gui_search("https://translate.google.com/#en/ja/REPLACEME")
 }
 
-else if BSIO = li%A_Space% ; Search LinkedIn
+else if BSIO = li%eChar% ; Search LinkedIn
 {
     gui_search_title = Search LinkedIn
     gui_search("https://www.linkedin.com/search/results/all/?keywords=REPLACEME")
@@ -138,7 +151,7 @@ else if BSIO = li%A_Space% ; Search LinkedIn
 ;-------------------------------------------------------------------------------
 ;;; LAUNCH WEBSITES AND PROGRAMS ;;;
 ;-------------------------------------------------------------------------------
-else if BSIO = / ; Go to subreddit. This is a quick way to navigate to a specific URL.
+else if BSIO = %nChar% . reddit . %eChar% ; Go to subreddit. This is a quick way to navigate to a specific URL.
 {
     gui_search_title := "/r/"
     gui_search("https://www.reddit.com/r/REPLACEME")
@@ -170,7 +183,7 @@ else if BSIO = Instap ; Instapaper
 
 
 
-else if BSIO = ama%A_Space% ; Amazon Search
+else if BSIO = ama%eChar% ; Amazon Search
 {
     gui_search_title = Search Amazon.com
     gui_search("https://www.amazon.com/s?k=REPLACEME&crid=1G4RZ6T4I6AZT&sprefix=REPLACEME%2Caps%2C64&ref=nb_sb_noss_2")
@@ -451,12 +464,12 @@ else if BSIO = env ; Edit Env Variables commands
 else if BSIO = name ; My name
 {
     gui_destroy()
-    Send, %MyName%
+    Send, % MyName
 }
 else if BSIO = phone ; My phone number
 {
     gui_destroy()
-    SendRaw, %PhoneNumber%
+    SendRaw, % PhoneNumber
 }
 else if BSIO = int ; LaTeX integral
 {
@@ -493,7 +506,8 @@ else if BSIO = rec ; Recycle Bin
 else if BSIO = start ; Startup folder
 {
     gui_destroy()
-    run, C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
+    Clipboard := A_Startup
+    run, % A_Startup ;C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
 }
 
 
